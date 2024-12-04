@@ -1,0 +1,173 @@
+<div class="container my-5">
+  <h1 class="mb-3">Edit Employee</h1>
+
+  <div class="row">
+    <div class="col-6">
+      <form [formGroup]="editEmployeeForm" (ngSubmit)="updateEmployee()">
+        <div class="mb-3">
+          <label for="id" class="form-label">Id</label>
+          <input
+            type="text"
+            class="form-control"
+            id="id"
+            formControlName="id"
+            readonly
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="firstName" class="form-label">First Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="firstName"
+            formControlName="firstName"
+          />
+          <div
+            *ngIf="
+              editEmployeeForm.get('firstName')?.touched &&
+              editEmployeeForm.get('firstName')?.invalid
+            "
+            class="text-danger"
+          >
+            <small
+              *ngIf="editEmployeeForm.get('firstName')?.errors?.['required']"
+              >First Name is required.</small
+            >
+            <small
+              *ngIf="editEmployeeForm.get('firstName')?.errors?.['maxlength']"
+              >Maximum 50 characters allowed.</small
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="lastName"
+            formControlName="lastName"
+          />
+          <div
+            *ngIf="
+              editEmployeeForm.get('lastName')?.touched &&
+              editEmployeeForm.get('lastName')?.invalid
+            "
+            class="text-danger"
+          >
+            <small
+              *ngIf="editEmployeeForm.get('lastName')?.errors?.['required']"
+              >Last Name is required.</small
+            >
+            <small
+              *ngIf="editEmployeeForm.get('lastName')?.errors?.['maxlength']"
+              >Maximum 50 characters allowed.</small
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            formControlName="email"
+          />
+          <div
+            *ngIf="
+              editEmployeeForm.get('email')?.touched &&
+              editEmployeeForm.get('email')?.invalid
+            "
+            class="text-danger"
+          >
+            <small *ngIf="editEmployeeForm.get('email')?.errors?.['required']"
+              >Email is required.</small
+            >
+            <small *ngIf="editEmployeeForm.get('email')?.errors?.['email']"
+              >Invalid email format.</small
+            >
+            <small *ngIf="editEmployeeForm.get('email')?.errors?.['maxLength']"
+              >Maximum 100 characters allowed.</small
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="position" class="form-label">Position</label>
+          <input
+            type="text"
+            class="form-control"
+            id="position"
+            formControlName="position"
+          />
+          <div
+            *ngIf="
+              editEmployeeForm.get('position')?.touched &&
+              editEmployeeForm.get('position')?.invalid
+            "
+            class="text-danger"
+          >
+            <small
+              *ngIf="editEmployeeForm.get('position')?.errors?.['required']"
+              >Position is required.</small
+            >
+            <small
+              *ngIf="editEmployeeForm.get('position')?.errors?.['maxlength']"
+              >Maximum 50 characters allowed.</small
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="salary" class="form-label">Salary</label>
+          <input
+            type="number"
+            class="form-control"
+            id="salary"
+            formControlName="salary"
+          />
+          <div
+            *ngIf="
+              editEmployeeForm.get('salary')?.touched &&
+              editEmployeeForm.get('salary')?.invalid
+            "
+            class="text-danger"
+          >
+            <small *ngIf="editEmployeeForm.get('salary')?.errors?.['required']"
+              >Salary is required.</small
+            >
+            <small *ngIf="editEmployeeForm.get('salary')?.errors?.['min']"
+              >Salary must be a positive number.</small
+            >
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-sm-flex">
+          <a
+            class="btn btn-light"
+            routerLink="/employees"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            >Back</a
+          >
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="editEmployeeForm.invalid"
+          >
+            Save
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger ml-5"
+            (click)="deleteEmployee(editEmployeeForm.get('id')?.value)"
+          >
+            Delete
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

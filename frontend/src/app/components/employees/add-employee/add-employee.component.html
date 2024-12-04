@@ -1,0 +1,144 @@
+<div class="container my-5">
+  <h1 class="mb-3">Add New Employee</h1>
+
+  <div class="row">
+    <div class="col-6">
+      <form [formGroup]="addEmployeeForm" (ngSubmit)="addEmployee()">
+        <div class="mb-3">
+          <label for="firstName" class="form-label">First Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="firstName"
+            formControlName="firstName"
+          />
+          <div
+            *ngIf="
+              addEmployeeForm.get('firstName')?.touched &&
+              addEmployeeForm.get('firstName')?.invalid
+            "
+            class="text-danger"
+          >
+            <small
+              *ngIf="addEmployeeForm.get('firstName')?.errors?.['required']"
+              >First Name is required.</small
+            >
+            <small
+              *ngIf="addEmployeeForm.get('firstName')?.errors?.['maxLength']"
+              >First Name cannot exceed 50 characters.</small
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="lastName"
+            formControlName="lastName"
+          />
+          <div
+            *ngIf="
+              addEmployeeForm.get('lastName')?.touched &&
+              addEmployeeForm.get('lastName')?.invalid
+            "
+            class="text-danger"
+          >
+            <small *ngIf="addEmployeeForm.get('lastName')?.errors?.['required']"
+              >Last Name is required.</small
+            >
+            <small
+              *ngIf="addEmployeeForm.get('lastName')?.errors?.['maxLength']"
+              >Last Name cannot exceed 50 characters.</small
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            formControlName="email"
+          />
+          <div
+            *ngIf="
+              addEmployeeForm.get('email')?.touched &&
+              addEmployeeForm.get('email')?.invalid
+            "
+            class="text-danger"
+          >
+            <small *ngIf="addEmployeeForm.get('email')?.errors?.['required']"
+              >Email is required.</small
+            >
+            <small *ngIf="addEmployeeForm.get('email')?.errors?.['email']"
+              >Invalid email address.</small
+            >
+            <small *ngIf="addEmployeeForm.get('email')?.errors?.['maxLength']"
+              >Email cannot exceed 100 characters.</small
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="position" class="form-label">Position</label>
+          <input
+            type="text"
+            class="form-control"
+            id="position"
+            formControlName="position"
+          />
+          <div
+            *ngIf="
+              addEmployeeForm.get('position')?.touched &&
+              addEmployeeForm.get('position')?.invalid
+            "
+            class="text-danger"
+          >
+            <small *ngIf="addEmployeeForm.get('position')?.errors?.['required']"
+              >Position is required.</small
+            >
+            <small
+              *ngIf="addEmployeeForm.get('position')?.errors?.['maxLength']"
+              >Position cannot exceed 50 characters.</small
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="salary" class="form-label">Salary</label>
+          <input
+            type="number"
+            class="form-control"
+            id="salary"
+            formControlName="salary"
+          />
+          <div
+            *ngIf="
+              addEmployeeForm.get('salary')?.touched &&
+              addEmployeeForm.get('salary')?.invalid
+            "
+            class="text-danger"
+          >
+            <small *ngIf="addEmployeeForm.get('salary')?.errors?.['required']"
+              >Salary is required.</small
+            >
+            <small *ngIf="addEmployeeForm.get('salary')?.errors?.['min']"
+              >Salary must be a positive number.</small
+            >
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="addEmployeeForm.invalid"
+        >
+          Add
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
